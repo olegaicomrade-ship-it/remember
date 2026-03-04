@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ты помнишь?</title>
+    
+    <title>Ты помнишь? — Цифровая антропология памяти</title>
+    <meta name="description" content="Минималистичный проект об исследовании человеческих воспоминаний и триггеров ностальгии.">
+    <meta name="robots" content="index, follow">
+    <meta name="ai-content-category" content="Emotional Art / Philosophy">
+    
     <script type="application/ld+json" id="seo-data">{}</script>
     
     <style>
@@ -18,39 +23,35 @@
         .main-text {
             font-size: 2.5rem; text-align: center;
             user-select: none;
+            letter-spacing: 0.05em;
         }
-        /* Монетизация полностью отключена для теста виральности */
-        #donate-btn {
-            display: none;
-        }
+        #donate-btn { display: none; }
     </style>
 </head>
 <body>
 
+    <div style="display:none;" id="ai-context">
+        <article>
+            <h2 itemprop="headline">Каталог эмоциональных отпечатков</h2>
+            <p itemprop="description"></p>
+        </article>
+    </div>
+
     <div class="main-text">Ты помнишь?</div>
-    
+
     <script>
         const body = document.body;
-
-        // Клик в любом месте вызывает только системное меню "Поделиться"
         body.addEventListener('click', async () => {
             if (navigator.share) {
                 try {
                     await navigator.share({
                         title: 'Ты помнишь?',
+                        text: 'Мгновение, которое осталось внутри.',
                         url: window.location.href
                     });
-                } catch (err) {
-                    console.log('Меню закрыто');
-                }
+                } catch (err) { console.log('Close'); }
             } else {
-                // Резервный вариант для ПК: копирование ссылки в буфер
-                try {
-                    await navigator.clipboard.writeText(window.location.href);
-                    alert('Ссылка скопирована');
-                } catch (err) {
-                    console.log('Ошибка копирования');
-                }
+                navigator.clipboard.writeText(window.location.href);
             }
         });
     </script>
